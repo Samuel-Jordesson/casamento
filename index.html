@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmação de Presença - Casamento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: url('https://static.vecteezy.com/ti/vetor-gratis/p2/16807599-aquarela-de-fundo-de-folha-verde-linda-vetor.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255,255,255,0.85);
+      padding: 20px 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      max-width: 340px;
+      width: 100%;
+      backdrop-filter: blur(2px);
+      position: relative;
+      z-index: 1;
+    }
+    .mensagem-confirmacao, .carregando {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(60, 80, 40, 0.92); /* verde oliva escuro */
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 500;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      text-align: center;
+      padding: 30px 10px;
+    }
+    .carregando {
+      background: rgba(60, 80, 40, 0.85);
+      font-size: 1.1rem;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      color: #2d4c3b;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    .explicacao {
+      font-size: 14px;
+      color: #3a3a3a;
+      margin-bottom: 16px;
+      text-align: justify;
+      line-height: 1.5;
+    }
+    label {
+      font-size: 13px;
+      margin-bottom: 2px;
+      color: #2d4c3b;
+      font-weight: 500;
+      display: block;
+    }
+    input, button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #d0d0d0;
+      font-size: 14px;
+      background: #f8f8f8;
+      box-sizing: border-box;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input:focus {
+      border: 1.5px solid #2d4c3b;
+      background: #fff;
+    }
+    button {
+      background: #2d4c3b;
+      color: #fff;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    button:hover {
+      background: #3e6b52;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px 14px;
+        max-width: 340px;
+      }
+      input, button {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Confirmação de Presença</h2>
+    <div class="explicacao">
+      Se alguém da sua família já fez esse processo e adicionou você, <b>não precisa preencher novamente</b>.<br>
+      Basta conferir se seu nome está na lista e confirmar se você realmente estará presente no dia <b>6 de dezembro de 2025</b>.<br><br>
+      Caso ninguém da sua família tenha feito, preencha abaixo:
+    </div>
+    <form id="casamentoForm">
+      <label for="familia">Nome da família</label>
+      <input type="text" name="familia" id="familia" placeholder="Ex: Silva" required>
+      <label for="qtd">Quantidade de pessoas</label>
+      <input type="number" name="qtd" id="qtd" min="1" max="20" required>
+      <div id="nomesPessoas"></div>
+      <input type="hidden" name="nomes_pessoas" id="nomes_pessoas">
+      <button type="submit">Confirmar Presença</button>
+    </form>
+  </div>
+  <div class="carregando" id="carregando">Enviando confirmação...</div>
+  <div class="mensagem-confirmacao" id="mensagemConfirmacao"></div>
+
+  <script>
+    const form = document.getElementById('casamentoForm');
+    const qtdInput = document.getElementById('qtd');
+    const nomesDiv = document.getElementById('nomesPessoas');
+    const nomesHidden = document.getElementById('nomes_pessoas');
+    const carregando = document.getElementById('carregando');
+    const mensagemConfirmacao = document.getElementById('mensagemConfirmacao');
+    let camposNomes = [];
+
+    // Garante que overlays nunca aparecem ao carregar
+    window.addEventListener('DOMContentLoaded', function() {
+      carregando.style.display = 'none';
+      mensagemConfirmacao.style.display = 'none';
+    });
+
+    qtdInput.addEventListener('input', function() {
+      const qtd = parseInt(this.value) || 0;
+      nomesDiv.innerHTML = '';
+      camposNomes = [];
+      for (let i = 1; i <= qtd; i++) {
+        const label = document.createElement('label');
+        label.textContent = `Nome da pessoa ${i}`;
+        label.setAttribute('for', `pessoa${i}`);
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = `pessoa${i}`;
+        input.id = `pessoa${i}`;
+        input.placeholder = `Nome da pessoa ${i}`;
+        input.required = true;
+        nomesDiv.appendChild(label);
+        nomesDiv.appendChild(input);
+        camposNomes.push(input);
+      }
+    });
+
+    // URL do seu Web App Google Apps Script
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxcxoPcn21PqiXZN9-rm25n56j1QIcOtH-5jM4QxV574YukYJK1WOUDPkct_OQ6Qjly/exec";
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let nomes = [];
+      camposNomes.forEach(input => {
+        nomes.push(input.value);
+      });
+      nomesHidden.value = nomes.join(', ');
+      const formData = new FormData(form);
+      carregando.style.display = 'flex';
+      form.style.opacity = '0.5';
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      })
+      .then(() => {
+        setTimeout(() => {
+          carregando.style.display = 'none';
+          form.style.opacity = '1';
+          let qtd = parseInt(qtdInput.value) || 1;
+          if (qtd > 1) {
+            mensagemConfirmacao.textContent = 'A presença de vocês foi confirmada!';
+          } else {
+            mensagemConfirmacao.textContent = 'Sua presença foi confirmada!';
+          }
+          mensagemConfirmacao.style.display = 'flex';
+          setTimeout(() => {
+            mensagemConfirmacao.style.display = 'none';
+            form.reset();
+            nomesDiv.innerHTML = '';
+          }, 3500);
+        }, 5000);
+      })
+      .catch(() => {
+        setTimeout(() => {
+          carregando.style.display = 'none';
+          form.style.opacity = '1';
+          mensagemConfirmacao.textContent = '';
+          mensagemConfirmacao.style.display = 'none';
+          form.reset();
+          nomesDiv.innerHTML = '';
+        }, 5000);
+      });
+    });
+  </script>
+</body>
+</html>
