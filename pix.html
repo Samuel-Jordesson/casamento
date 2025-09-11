@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contribuição via PIX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: url('https://static.vecteezy.com/ti/vetor-gratis/p2/16807599-aquarela-de-fundo-de-folha-verde-linda-vetor.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255,255,255,0.85);
+      padding: 20px 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      max-width: 340px;
+      width: 100%;
+      backdrop-filter: blur(2px);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #2d4c3b;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    .mensagem {
+      font-size: 15px;
+      color: #3a3a3a;
+      margin-bottom: 18px;
+      text-align: justify;
+      line-height: 1.5;
+    }
+    .qrcode-area {
+      margin: 18px 0 10px 0;
+      text-align: center;
+    }
+    .pix-chave {
+      font-weight: bold;
+      font-size: 16px;
+      background: #dbeed2;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin: 8px 0;
+      display: inline-block;
+      letter-spacing: 1px;
+      user-select: all;
+    }
+    .copiar-btn {
+      background: #2d4c3b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 16px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.3s;
+    }
+    .copiar-btn:hover {
+      background: #3e6b52;
+    }
+    #copiadoMsg {
+      display:none;
+      color:#2d4c3b;
+      margin-top:8px;
+      font-size:14px;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px 14px;
+        max-width: 340px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Contribuição via PIX</h2>
+    <div class="mensagem">
+      Se você quiser nos ajudar com algum valor para nos presentear, ao invés de ficar indeciso sobre qual presente dar, pode usar o PIX abaixo.<br>
+      Qualquer valor será recebido com carinho e gratidão!
+    </div>
+    <div class="qrcode-area">
+      <img src="https://www.the-qrcode-generator.com/wp-content/themes/tqrcg/new_widget/assets/templates-with-watermark/watermark-template-1.svg" alt="QR Code PIX" style="width:140px; height:140px;">
+    </div>
+    <div class="pix-chave" id="pixChave">samueljordesson@gmail.com</div>
+    <button class="copiar-btn" onclick="copiarPix()">Copiar chave PIX</button>
+    <div id="copiadoMsg">Chave copiada!</div>
+  </div>
+  <script>
+    function copiarPix() {
+      const chave = document.getElementById('pixChave').textContent;
+      navigator.clipboard.writeText(chave).then(function() {
+        document.getElementById('copiadoMsg').style.display = 'block';
+        setTimeout(function(){
+          document.getElementById('copiadoMsg').style.display = 'none';
+        }, 1800);
+      });
+    }
+    // Esconde mensagem ao carregar
+    window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('copiadoMsg').style.display = 'none';
+    });
+  </script>
+</body>
+</html>

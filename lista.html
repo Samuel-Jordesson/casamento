@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Presentes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: url('https://static.vecteezy.com/ti/vetor-gratis/p2/16807599-aquarela-de-fundo-de-folha-verde-linda-vetor.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255,255,255,0.85);
+      padding: 20px 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      max-width: 340px;
+      width: 100%;
+      backdrop-filter: blur(2px);
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      color: #2d4c3b;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    ul {
+      padding-left: 18px;
+      margin-bottom: 18px;
+      color: #2d4c3b;
+      font-size: 15px;
+    }
+    .pix-area {
+      background: #eaf3e6;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 18px;
+      text-align: center;
+      color: #2d4c3b;
+      font-size: 15px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .pix-chave {
+      font-weight: bold;
+      font-size: 16px;
+      background: #dbeed2;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin: 8px 0;
+      display: inline-block;
+      letter-spacing: 1px;
+      user-select: all;
+    }
+    .copiar-btn {
+      background: #2d4c3b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 16px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.3s;
+    }
+    .copiar-btn:hover {
+      background: #3e6b52;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px 14px;
+        max-width: 340px;
+      }
+      ul, .pix-area {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Lista de Presentes</h2>
+    <ul>
+      <li>Jogo de Toalhas</li>
+      <li>Conjunto de Panelas</li>
+      <li>Liquidificador</li>
+      <li>Ferro de Passar</li>
+      <li>Jogo de Copos</li>
+      <li>Contribuição em dinheiro</li>
+      <!-- Adicione mais itens conforme desejar -->
+    </ul>
+    <div class="pix-area">
+      <div>Se preferir, você pode contribuir via PIX:</div>
+      <div class="pix-chave" id="pixChave">samueljordesson@gmail.com</div>
+      <button class="copiar-btn" onclick="copiarPix()">Copiar chave PIX</button>
+      <div id="copiadoMsg" style="display:none; color:#2d4c3b; margin-top:8px; font-size:14px;">Chave copiada!</div>
+    </div>
+  </div>
+  <script>
+    function copiarPix() {
+      const chave = document.getElementById('pixChave').textContent;
+      navigator.clipboard.writeText(chave).then(function() {
+        document.getElementById('copiadoMsg').style.display = 'block';
+        setTimeout(function(){
+          document.getElementById('copiadoMsg').style.display = 'none';
+        }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>
