@@ -96,6 +96,26 @@
     button:hover {
       background: #3e6b52;
     }
+    .present-btn {
+      display: block;
+      width: auto;
+      min-width: 220px;
+      max-width: 100%;
+      margin: 18px auto 0 auto;
+      padding: 10px 22px;
+      background: #2d4c3b;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Inter', Arial, sans-serif;
+      text-decoration: none;
+      font-weight: 500;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .present-btn:hover {
+      background: #3e6b52;
+    }
     @media (max-width: 500px) {
       .container {
         padding: 20px 14px;
@@ -124,6 +144,7 @@
       <input type="hidden" name="nomes_pessoas" id="nomes_pessoas">
       <button type="submit">Confirmar Presença</button>
     </form>
+    <a href="lista.html" class="present-btn">Ir para Lista de Presentes</a>
   </div>
   <div class="carregando" id="carregando">Enviando confirmação...</div>
   <div class="mensagem-confirmacao" id="mensagemConfirmacao"></div>

@@ -15,29 +15,62 @@
       min-height: 100vh;
       margin: 0;
     }
+      .present-title {
+        text-align: center;
+        font-family: 'Georgia', serif;
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 18px;
+        color: #2d4c3b;
+      }
     .container {
       background: rgba(255,255,255,0.85);
-      padding: 20px 14px;
-      border-radius: 12px;
+      padding: 32px 18px 24px 18px;
+      border-radius: 18px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      max-width: 340px;
+  max-width: 800px;
       width: 100%;
-      backdrop-filter: blur(2px);
-      position: relative;
-      z-index: 1;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 8px;
-      color: #2d4c3b;
-      font-weight: 600;
-      font-size: 1.3rem;
-    }
+      h1.present-title {
+        text-align: center;
+        font-family: 'Georgia', serif;
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 18px;
+        color: #2d4c3b;
+      }
     ul {
       padding-left: 18px;
       margin-bottom: 18px;
       color: #2d4c3b;
       font-size: 15px;
+    }
+      ul.present-list {
+        list-style: disc inside;
+        padding-left: 0;
+        margin-bottom: 0;
+        color: #2d4c3b;
+        font-size: 16px;
+        font-family: 'Georgia', serif;
+      }
+    .present-list-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 48px;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    ul.present-list {
+      width: 300px;
+      min-width: 160px;
+      box-sizing: border-box;
+      margin: 0;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
     }
     .pix-area {
       background: #eaf3e6;
@@ -74,35 +107,126 @@
     .copiar-btn:hover {
       background: #3e6b52;
     }
-    @media (max-width: 500px) {
+    .present-note {
+      text-align: center;
+      margin-top: 18px;
+      color: #2d4c3b;
+      font-size: 1rem;
+      font-family: 'Inter', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .palette-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 10px 0 8px 0;
+    }
+    .palette-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      display: inline-block;
+    }
+    .palette-black { background: #222; }
+    .palette-white { background: #fff; }
+    .palette-glass { background: linear-gradient(135deg, #e6e6e6 60%, #b3b3b3 100%); border: 2px solid #b3b3b3; }
+    .palette-steel { background: linear-gradient(135deg, #dbe2e8 60%, #a3b1bb 100%); border: 2px solid #a3b1bb; }
+    .confirm-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 22px;
+  background: #2d4c3b;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Inter', Arial, sans-serif;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.confirm-btn:hover {
+  background: #3e6b52;
+}
+    @media (max-width: 700px) {
       .container {
-        padding: 20px 14px;
-        max-width: 340px;
+        max-width: 98vw;
+        padding: 12px 2vw;
       }
-      ul, .pix-area {
-        font-size: 15px;
+      .present-list-wrapper {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+      }
+      ul.present-list {
+        width: 100%;
+        margin-bottom: 18px;
+      }
+      .pix-area {
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Lista de Presentes</h2>
-    <ul>
-      <li>Jogo de Toalhas</li>
-      <li>Conjunto de Panelas</li>
-      <li>Liquidificador</li>
-      <li>Ferro de Passar</li>
-      <li>Jogo de Copos</li>
-      <li>Contribuição em dinheiro</li>
-      <!-- Adicione mais itens conforme desejar -->
-    </ul>
+      <h1 class="present-title">Lista de Presentes</h1>
+      <div class="present-intro" style="text-align:center; font-family:'Georgia','Times New Roman',Times,serif; color:#2d4c3b; margin-bottom:22px; font-size:1.08rem; line-height:1.6;">
+    Queridos amigos e familiares,<br><br>
+    O maior presente que poderíamos receber é a presença de cada um de vocês em um dos dias mais especiais das nossas vidas. Compartilhar esse momento ao lado de quem amamos já é motivo de muita alegria e gratidão.<br><br>
+    Mas, caso desejem nos presentear de outra forma, preparamos esta lista com muito carinho para ajudar a construir nosso novo lar e nossa nova fase juntos.
+  </div>
+      <div class="present-list-wrapper">
+        <ul class="present-list">
+          <li>Jogo de panelas</li>
+          <li>Frigideiras</li>
+          <li>Jogo de pratos</li>
+          <li>Jogo de copos de vidro</li>
+          <li>Jogo de talheres</li>
+          <li>Assadeiras e formas</li>
+          <li>Travessas de vidro</li>
+          <li>Liquidificador</li>
+          <li>Sanduicheira</li>
+          <li>Cafeteira</li>
+          <li>Panela de pressão</li>
+          <li>Conjunto de potes</li>
+          <li>Jogo de cama casal</li>
+          <li>Edredom / cobertor casal</li>
+          <li>Toalhas de banho</li>
+          <li>Conjunto de xícaras</li>
+        </ul>
+        <ul class="present-list">
+          <li>Ferro de passar</li>
+          <li>Ventilador</li>
+          <li>Escorredor de macarrão</li>
+          <li>Garrafa térmica de café</li>
+          <li>Baldes / bacia</li>
+          <li>Batedeira</li>
+          <li>Tapete para banheiro</li>
+          <li>Escorredor de prato</li>
+          <li>Tábua de corte</li>
+          <li>Jogo de sobremesa (taças pequenas ou potinhos)</li>
+          <li>Cesto de roupas</li>
+        </ul>
+      </div>
+      <div class="present-note">
+        <div class="palette-row">
+          <span class="palette-circle palette-black" title="Preto"></span>
+          <span class="palette-circle palette-white" title="Branco" style="border:2px solid #bbb;"></span>
+          <span class="palette-circle palette-glass" title="Vidro"></span>
+          <span class="palette-circle palette-steel" title="Inox"></span>
+        </div>
+        <div style="margin-bottom:6px;">Paleta de cores: Preto, Branco, Vidro e Inox</div>
+      </div>
     <div class="pix-area">
       <div>Se preferir, você pode contribuir via PIX:</div>
-      <div class="pix-chave" id="pixChave">samueljordesson@gmail.com</div>
+      <div class="pix-chave" id="pixChave">91984582002</div>
       <button class="copiar-btn" onclick="copiarPix()">Copiar chave PIX</button>
       <div id="copiadoMsg" style="display:none; color:#2d4c3b; margin-top:8px; font-size:14px;">Chave copiada!</div>
     </div>
+    <a href="index.html" class="confirm-btn">Confirma presença</a>
   </div>
   <script>
     function copiarPix() {
